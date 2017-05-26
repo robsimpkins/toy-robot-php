@@ -126,8 +126,22 @@ The simulator can be given commands either via the CLI or from a file:
 TBC
 
 ## Development Considerations
+The solution to this puzzle was developed with [SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) design principles in mind.
 
-TBC
+* **Single Responsibility** - the three classes that comprise the solution each have their own distinct responsibilities. Read in command input and execute on robot. Parse, interpret and execute commands. Determine the positionality of coordinates on the board.
+* **Open/Closed** - the three classes have public functions to set inputs and get outputs. Internal attributes and methods are protected to allow for extension through inheritance, should this be required.
+* **Liskov Substitution** - the use of dependency injection supports the replacement of each class by means of a subtype.
+* **Interface Segregation** - the solution developed was not complicated enough to warrant interfaces. Had there been multiple types of robot, then an interface for the `execute` and output methods would have been worthwhile.
+* **Dependency Inversion** - the solution developed was not complicated enough to warrant dependency inversion.
+
+The solution makes one assumption, that being when a `PLACE` command is called without any arguments, the x,y coordinates and direction will default to 0,0,NORTH.
+
+The puzzle solution is readily extendible in the following manners:
+
+* Changeable board size.
+* Different robot with altered commands can be injected.
+* Robot methods could be modified to accept paramters. E.g. the `move` function could accept a distance.
+* Board and robot could be modified to operate in three-dimensions.
 
 ## Examples
 The repository includes four test files with sample commands.

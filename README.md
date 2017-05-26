@@ -136,11 +136,11 @@ The solution to this puzzle was developed with [SOLID](https://en.wikipedia.org/
 
 The solution makes one assumption, that being when a `PLACE` command is called without any arguments, the x,y coordinates and direction will default to 0,0,NORTH.
 
-The puzzle solution is readily extendible in the following manners:
+The puzzle solution is readily extendible, including but not limited to the following:
 
 * Changeable board size.
 * Different robot with altered commands can be injected.
-* Robot methods could be modified to accept paramters. E.g. the `move` function could accept a distance.
+* Robot methods could be modified to accept parameters. E.g. the `move` function could accept a distance.
 * Board and robot could be modified to operate in three-dimensions.
 
 ## Examples

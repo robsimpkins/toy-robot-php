@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+<?php
+
+require 'vendor/autoload.php';
+
+use ToyRobot\Board;
+use ToyRobot\Robot;
+use ToyRobot\Simulator;
+
+// Create robot, board and simulator
+$robot = new Robot(new Board(5, 5));
+$simulator = new Simulator($robot);
+
+// Parse command line arguments and run
+$source = $argv[1] ?? 'php://stdin';
+$simulator->run($source);

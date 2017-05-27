@@ -120,10 +120,12 @@ The simulator can be given commands either via the CLI or from a file:
 
     php simulate
 
-    php simulate test-1.txt
+    php simulate data/test-1.txt
 
 ### Run Tests
-TBC
+The tests can be run using:
+
+    vendor/bin/phpunit
 
 ## Development Considerations
 The solution to this puzzle was developed with [SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) design principles in mind.
@@ -146,14 +148,14 @@ The puzzle solution is readily extendible, including but not limited to the foll
 ## Examples
 The repository includes four test files with sample commands.
 
-    php simulate test-1.txt
+    php simulate data/test-1.txt
     // Expected output: 0,1,NORTH
 
-    php simulate test-2.txt
+    php simulate data/test-2.txt
     // Expected output: 0,0,WEST
 
-    php simulate test-3.txt
+    php simulate data/test-3.txt
     // Expected output: 3,3,NORTH
 
-    php simulate test-4.txt
+    php simulate data/test-4.txt
     // Expected output: 4,4,EAST

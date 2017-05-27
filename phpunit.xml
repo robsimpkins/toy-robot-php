@@ -1,0 +1,10 @@
+<phpunit>
+    <testsuite name="Toy Robot Simulator">
+        <directory>./tests/</directory>
+    </testsuite>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">app/</directory>
+        </whitelist>
+    </filter>
+</phpunit>

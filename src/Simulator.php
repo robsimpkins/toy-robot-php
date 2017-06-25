@@ -13,7 +13,7 @@ class Simulator
     /**
      * Create new Simulator instance.
      *
-     * @param  \ToyRobot\Robot
+     * @param  \ToyRobot\Robot  $robot
      * @return void
      */
     public function __construct(Robot $robot)

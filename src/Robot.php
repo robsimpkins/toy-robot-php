@@ -49,6 +49,16 @@ class Robot
      */
     protected $direction;
 
+    /**
+     * @var array  Directions map.
+     */
+    protected $directionMap = [
+        self::DIRECTION_NORTH => self::DIRECTION_EAST,
+        self::DIRECTION_EAST  => self::DIRECTION_SOUTH,
+        self::DIRECTION_SOUTH => self::DIRECTION_WEST,
+        self::DIRECTION_WEST  => self::DIRECTION_NORTH,
+    ];
+
 
     /**
      * Create new Robot instance.
@@ -242,21 +252,9 @@ class Robot
 
         // Determine direction of rotation - clockwise or anti-clockwise
         $clockwise = ($rotation === self::ROTATION_RIGHT);
+        $mappings = $clockwise ? $this->directionMap : array_flip($this->directionMap);
 
-        // Determine new direction based on current direction of rotation
-        switch ($this->direction) {
-            case self::DIRECTION_NORTH:
-                return $clockwise ? self::DIRECTION_EAST : self::DIRECTION_WEST;
-
-            case self::DIRECTION_EAST:
-                return $clockwise ? self::DIRECTION_SOUTH : self::DIRECTION_NORTH;
-
-            case self::DIRECTION_SOUTH:
-                return $clockwise ? self::DIRECTION_WEST : self::DIRECTION_EAST;
-
-            case self::DIRECTION_WEST:
-                return $clockwise ? self::DIRECTION_NORTH : self::DIRECTION_SOUTH;
-        }
+        return $mappings[$this->direction];
     }
 
     /**

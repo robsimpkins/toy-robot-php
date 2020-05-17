@@ -24,7 +24,6 @@ class SimulatorTest extends TestCase
     protected $simulator;
 
 
-
     /**
      * Set up test case.
      *

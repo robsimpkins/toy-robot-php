@@ -8,7 +8,8 @@ use ToyRobot\Robot;
 use ToyRobot\Simulator;
 
 // Create robot, board and simulator
-$robot = new Robot(new Board(5, 5));
+$board = new Board(5, 5);
+$robot = new Robot($board);
 $simulator = new Simulator($robot);
 
 // Parse command line arguments and run

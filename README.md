@@ -18,17 +18,16 @@
 * The robot is free to roam around the surface of the table, but must be prevented from falling to destruction. Any movement that would result in the robot falling from the table must be prevented, however further valid movement commands must still be allowed.
 
 Create an application that can read in commands of the following form:
-```
-PLACE X,Y,F
-MOVE
-LEFT
-RIGHT
-REPORT
-```
 
-* `PLACE` will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST.
+    PLACE X,Y,F
+    MOVE
+    LEFT
+    RIGHT
+    REPORT
 
-* The origin (0,0) can be considered to be the SOUTH WEST most corner.
+* `PLACE` will put the toy robot on the table in position `X,Y` and facing `NORTH`, `SOUTH`, `EAST`, or `WEST`.
+
+* The origin (0,0) can be considered to be the `SOUTH WEST` most corner.
 
 * The first valid command to the robot is a `PLACE` command, after that, any sequence of commands may be issued, in any order, including another `PLACE` command. The application should discard all commands in the sequence until a valid `PLACE` command has been executed
 
@@ -36,7 +35,7 @@ REPORT
 
 * `LEFT` and `RIGHT` will rotate the robot 90 degrees in the specified direction without changing the position of the robot.
 
-* `REPORT` will announce the X,Y and F of the robot. This can be in any form, but standard output is sufficient.
+* `REPORT` will announce the `X,Y` and `F` of the robot. This can be in any form, but standard output is sufficient.
 
 * A robot that is not on the table can choose to ignore the `MOVE`, `LEFT`, `RIGHT` and `REPORT` commands.
 
@@ -52,7 +51,7 @@ REPORT
 
 ### Example Input and Output:
 
-#### Example a
+#### Example A
 
     PLACE 0,0,NORTH
     MOVE
@@ -62,7 +61,7 @@ Expected output:
 
     0,1,NORTH
 
-#### Example b
+#### Example B
 
     PLACE 0,0,NORTH
     LEFT
@@ -72,7 +71,7 @@ Expected output:
 
     0,0,WEST
 
-#### Example c
+#### Example C
 
     PLACE 1,2,EAST
     MOVE
@@ -101,31 +100,35 @@ Expected output
 
 ## Setup
 
-1. The host computer must be running PHP 7.0+.
+1. The host computer must be running Docker.
 
 2. Clone this repository:
 
-    ```git clone git@github.com:robsimpkins/toy-robot-php.git```
+       git clone git@github.com:robsimpkins/toy-robot-php.git
 
 3. Change directory into the repository directory:
 
-    ```cd toy-robot-php```
+       cd toy-robot-php
 
-4. Run project dependencies:
+4. Build and tag Docker image
 
-    ```composer install```
+       docker build --tag toyrobotphp .
+
+5. Install project dependencies:
+
+       docker run --rm -v "$PWD":/var/www -w /var/www toyrobotphp php /usr/local/bin/composer install
 
 ### Run Simulator
 The simulator can be given commands either via the CLI or from a file:
 
-    php simulate
+    docker run -it --rm -v "$PWD":/var/www -w /var/www toyrobotphp php simulate
 
-    php simulate data/test-1.txt
+    docker run --rm -v "$PWD":/var/www -w /var/www toyrobotphp php simulate data/test-1.txt
 
 ### Run Tests
 The tests can be run using:
 
-    vendor/bin/phpunit
+    docker run --rm -v "$PWD":/var/www -w /var/www toyrobotphp php vendor/bin/phpunit --coverage-html tests/report
 
 ## Development Considerations
 The solution to this puzzle was developed with [SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) design principles in mind.
